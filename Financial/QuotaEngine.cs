@@ -20,14 +20,19 @@ namespace Financial
         }
         public Quota GetQuota()
         {
-            var quota = new Quota {Capital = _capital/_term};
+            var quota = new Quota { Capital = _capital / _term };
             quota.RateAmount = quota.Capital * _rate;
             return quota;
         }
 
         public IList<Quota> GetPaymentCalendar()
         {
-            throw new NotImplementedException();
+            var calendar = new List<Quota>();
+            for (var i = 0; i < _term; i++)
+            {
+                calendar.Add(new Quota());
+            }
+            return calendar;
         }
     }
 }
