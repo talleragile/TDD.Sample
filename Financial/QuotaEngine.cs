@@ -7,9 +7,11 @@ namespace Financial
 {
     public class QuotaEngine
     {
-        public object GetQuota(Decimal capital, double rate, int quotaNumber)
+        public Quota GetQuota(double capital, double rate, int quotaNumber)
         {
-            return 110;
+            var quota = new Quota {Capital = capital/quotaNumber};
+            quota.RateAmount = quota.Capital * rate;
+            return quota;
         }
     }
 }
