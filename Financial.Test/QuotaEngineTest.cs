@@ -17,7 +17,6 @@ namespace Financial.Test
             var loan = new QuotaEngine();
             var quota = loan.GetQuota(1000, 0.01, 10);
             quota.Should().Be(110);
-
         }
     }
 }
