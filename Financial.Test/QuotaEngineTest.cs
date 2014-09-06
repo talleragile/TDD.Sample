@@ -18,33 +18,17 @@ namespace Financial.Test
             quotaEngine = new QuotaEngine();
         }
         [Test]
-        public void GetQuota_When_Capital_1000_and_Interes_10_Term_10_Return_101()
+        [TestCase(1000,0.1,10,100,10,110)]
+        [TestCase(600, 0.01, 10, 60, 0.6, 60.6)]
+        [TestCase(5000, 0.1, 10, 500, 50, 550)]
+        public void GetQuota_Test(double capital, double rate, int term, double capitalExpected, double rateAmmountExpected, double totalExpected )
         {
             
-            var quota = quotaEngine.GetQuota(1000, 0.10, 10);
+            var quota = quotaEngine.GetQuota(capital, rate, term);
             quota.Should().BeOfType<Quota>();
-            quota.Capital.Should().Be(100);
-            quota.RateAmount.Should().Be(10);
-            quota.Total.Should().Be(110);
-        }
-
-        [Test]
-        public void GetQuota_When_Capital_600_and_Interes_1_Term_10_Return_60dot6()
-        {
-            var quota = quotaEngine.GetQuota(600, 0.01, 10);
-            quota.Should().BeOfType<Quota>();
-            quota.Capital.Should().Be(60);
-            quota.RateAmount.Should().Be(0.6);
-            quota.Total.Should().Be(60.6);
-        }
-
-        [Test]
-        public void GetQuota_When_Capital_5000_Rate_10_Term_10_Return_Quota_Capital_500_Rate_50()
-        {
-            var quota = quotaEngine.GetQuota(5000, 0.1, 10);
-            quota.Capital.Should().Be(500);
-            quota.RateAmount.Should().Be(50);
-            quota.Total.Should().Be(550);
+            quota.Capital.Should().Be(capitalExpected);
+            quota.RateAmount.Should().Be(rateAmmountExpected);
+            quota.Total.Should().Be(totalExpected);
         }
     }
 }
