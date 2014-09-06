@@ -7,11 +7,27 @@ namespace Financial
 {
     public class QuotaEngine
     {
-        public Quota GetQuota(double capital, double rate, int quotaNumber)
+        private double _capital;
+        private double _rate;
+        private int _term;
+
+        public QuotaEngine(double capital, double rate, int term)
         {
-            var quota = new Quota {Capital = capital/quotaNumber};
-            quota.RateAmount = quota.Capital * rate;
+            // TODO: Complete member initialization
+            this._capital = capital;
+            this._rate = rate;
+            this._term = term;
+        }
+        public Quota GetQuota()
+        {
+            var quota = new Quota {Capital = _capital/_term};
+            quota.RateAmount = quota.Capital * _rate;
             return quota;
+        }
+
+        public IList<Quota> GetPaymentCalendar()
+        {
+            throw new NotImplementedException();
         }
     }
 }
