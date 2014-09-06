@@ -37,5 +37,14 @@ namespace Financial.Test
             quota.RateAmount.Should().Be(0.6);
             quota.Total.Should().Be(60.6);
         }
+
+        [Test]
+        public void GetQuota_When_Capital_5000_Rate_10_Term_10_Return_Quota_Capital_500_Rate_50()
+        {
+            var quota = quotaEngine.GetQuota(5000, 0.1, 10);
+            quota.Capital.Should().Be(500);
+            quota.RateAmount.Should().Be(50);
+            quota.Total.Should().Be(550);
+        }
     }
 }
